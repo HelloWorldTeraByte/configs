@@ -1,0 +1,9 @@
+call plug#begin('~/.config/nvim/plugged')
+Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'w0rp/ale'
+call plug#end()
