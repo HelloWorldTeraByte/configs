@@ -1,6 +1,8 @@
 " NERDTree mappings
 map <C-n> :NERDTreeToggle<CR>
 
+imap jk <Esc>
+
 " Switch around buffers more easily
 map <C-j> <C-W>j
 map <C-k> <C-W>k
