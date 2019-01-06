@@ -1,5 +1,7 @@
 set nocompatible        " Be iMproved
 set encoding=utf-8      " Set encoding to be utf-8
+set fileencoding=utf-8
+set autoread
 filetype plugin indent on
 
 set showmatch           " Show matching brackets.
@@ -15,10 +17,15 @@ set hlsearch                    " Keep matches highlighted.
 set number                  	" Set line numbering
 set laststatus=2                " Always show the status bar
 set showcmd                     " Show already typed keys when more are expected.
-set ttyfast
+
+set foldenable
+set foldmethod=syntax
+set foldlevel=10
 set lazyredraw
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set list
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set showbreak=↪
+set textwidth=80
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'flazz/vim-colorschemes'
@@ -36,13 +43,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim'
 call plug#end()
 
-let mapleader = ","
-
-syntax on                   	" Enable syntax highlighting.
-colorscheme gruvbox
-
-let g:lightline = {'colorscheme': 'one'}
-
 " TODO:Get compile_commands.json to work with ale
 let g:ale_c_parse_makefile = 1
 
@@ -55,6 +55,13 @@ let g:LanguageClient_serverCommands = {
 
 let g:LanguageClient_autoStart = 1
 
+syntax on
+set t_Co=256
+colorscheme gruvbox
+set cursorline
+let g:lightline = {'colorscheme': 'one'}
+
+let mapleader = ","
 " NERDTree mappings
 map <C-n> :NERDTreeToggle<CR>
 
@@ -67,25 +74,26 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Resize Buffers
-nmap <C-Right> :vertical resize +5<CR>
-nmap <C-Left> :vertical resize -5<CR>
-nmap <C-Up> :resize -5<CR>
-nmap <C-Down> :resize +5<CR>
+nnoremap <C-Right> :vertical resize +5<CR>
+nnoremap <C-Left> :vertical resize -5<CR>
+nnoremap <C-Up> :resize -5<CR>
+nnoremap <C-Down> :resize +5<CR>
 
-nmap <leader>sc :nohl<CR>    " Clear highlighting
+" Clear the highlighting from the search
+nnoremap <leader><space> :nohlsearch<CR>
 
-nmap <leader>ah :call LanguageClient#textDocument_hover()<CR>
-nmap <leader>ad :call LanguageClient#textDocument_definition()<CR>
-nmap <leader>at :call LanguageClient#textDocument_typeDefinition()<CR>
-nmap <leader>ai :call LanguageClient#textDocument_implementation()<CR>
+nnoremap <leader>ah :call LanguageClient#textDocument_hover()<CR>
+nnoremap <leader>ad :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>at :call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap <leader>ai :call LanguageClient#textDocument_implementation()<CR>
 
-nmap bl :buffers<CR>
-nmap bg :buffers<CR>:buffer<Space>
+nnoremap bl :buffers<CR>
+nnoremap bg :buffers<CR>:buffer<Space>
 
-nmap th  :tabfirst<CR>
-nmap tl  :tablast<CR>
-nmap tk  :tabnext<CR>
-nmap tj  :tabprev<CR>
-nmap tt  :tabedit<Space>
-nmap tm  :tabm<Space>
-nmap td  :tabclose<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
