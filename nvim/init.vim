@@ -14,7 +14,7 @@ set shiftround          " >> indents to next multiple of 'shiftwidth'.
 set backspace=indent,eol,start  " Make backspace work as you would expect.
 set incsearch                   " Highlight while searching with / or ?.
 set hlsearch                    " Keep matches highlighted.
-set number                  	" Set line numbering
+set number                      " Set line numbering
 set laststatus=2                " Always show the status bar
 set showcmd                     " Show already typed keys when more are expected.
 
@@ -35,25 +35,29 @@ Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-clangx'
 Plug 'Shougo/neoinclude.vim'
 call plug#end()
 
 " TODO:Get compile_commands.json to work with ale
 let g:ale_c_parse_makefile = 1
+let g:ale_open_list = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
 let g:deoplete#enable_at_startup = 1
 
-let g:LanguageClient_serverCommands = {
-            \ 'cpp': ['clangd'],
-            \ 'c': ['clangd'],
-            \ }
-
-let g:LanguageClient_autoStart = 1
+"let g:LanguageClient_serverCommands = {
+"            \ 'cpp': ['clangd'],
+"            \ 'c': ['clangd'],
+"            \ }
+"
+"let g:LanguageClient_autoStart = 1
 
 syntax on
 set t_Co=256
@@ -82,10 +86,10 @@ nnoremap <C-Down> :resize +5<CR>
 " Clear the highlighting from the search
 nnoremap <leader><space> :nohlsearch<CR>
 
-nnoremap <leader>ah :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader>ad :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>at :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap <leader>ai :call LanguageClient#textDocument_implementation()<CR>
+"nnoremap <leader>ah :call LanguageClient#textDocument_hover()<CR>
+"nnoremap <leader>ad :call LanguageClient#textDocument_definition()<CR>
+"nnoremap <leader>at :call LanguageClient#textDocument_typeDefinition()<CR>
+"nnoremap <leader>ai :call LanguageClient#textDocument_implementation()<CR>
 
 nnoremap bl :buffers<CR>
 nnoremap bg :buffers<CR>:buffer<Space>
